@@ -1,10 +1,29 @@
 #main
   %h3 All products
 
+  =form_tag products_path, :method => :get do
+    =label :age, "Minimum age"
+    =text_field_tag :age
+    =label :price, "Maximum price"
+    =text_field_tag :price
+    =submit_tag 'Filter products'
+  =params.inspect
   %table.products_table
     %tr.products_header
-      %th Name
+      %th= link_to "Name", products_path(:sort => "name")
       %th Description
-      %th Appropriate ages
-      %th Price
+      %th= link_to "Appropriate ages", products_path(:sort => "minimum_age_appropriate")
+      %th= link_to "Price", products_path(:sort => "price")
+      %th Example Photo
+    %tbody
+    - @products.each do |p|
+      %tr.productrow
+        %td.productname= link_to "#{p.name}", p
+        %td#description= p.description
+        %td#age= p.age_range
+        %td#price= number_to_currency(p.price)
+        %td#image= image_tag(p.image.url(:thumb))
+
+
+  %p= link_to "Create New Product", new_product_path
 

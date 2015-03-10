@@ -52,3 +52,6 @@ body a:link, body a:visited, body .products_table th {
   background-color: #6D8DB7; 
 }
 
+body #price {
+  text-align: right;
+}

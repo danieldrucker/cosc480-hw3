@@ -13,7 +13,14 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Me
 gem 'haml-rails'
+gem 'paperclip', '~> 4.2'
+
+group :test do
+    gem 'simplecov', :require => false
+    gem 'database_cleaner'
+end
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

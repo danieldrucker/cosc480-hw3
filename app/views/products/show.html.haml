@@ -1,3 +1,17 @@
 #main
-  %table.products_table
+  %h3 Product Details for #{@product.name}
+  %p= link_to "Edit product details", edit_product_path
 
+  %table.products_table
+    %tr.products_header
+      %th Description
+      %th Appropriate ages
+      %th Price
+      %th Example Photo
+    %tbody
+      %tr.productrow
+        %td#description= @product.description
+        %td#age= @product.age_range
+        %td#price= number_to_currency(@product.price)
+        %td#image= image_tag(@product.image.url(:medium))
+  %p= link_to "Back to product list", products_path, :age => '', :price => '', :sort => ''

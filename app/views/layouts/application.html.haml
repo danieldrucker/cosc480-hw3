@@ -10,5 +10,11 @@
   %body
     #header
       %h1 Vandelay Industries Toy Store
+
+    - if flash.notice
+      .notice= flash.notice
+    - if flash.alert
+      .notice.alert= flash.alert
+
     = yield
 

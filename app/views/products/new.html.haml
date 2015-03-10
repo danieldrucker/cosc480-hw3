@@ -1,0 +1,20 @@
+#main  
+  %h2 Create New Product
+
+  =form_for Product.new do |f|
+    %br=f.label :name
+    =f.text_field :name
+    %br=f.label :description
+    =f.text_field :description
+    %br=f.label :minimum_age_appropriate
+    =f.number_field :minimum_age_appropriate
+    %br=f.label :maximum_age_appropriate
+    =f.number_field :maximum_age_appropriate
+    %br=f.label :price
+    =f.number_field :price
+    %br=f.label :image
+    =f.file_field :image
+    %br=f.submit "Create product"
+
+  %p= link_to "Back to product list", products_path
+
