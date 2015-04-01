@@ -28,6 +28,16 @@ Feature: Filter products by age and price
     But I should not see "fluffy bunny"
     And I should not see "ball"
 
+  Scenario: filter by minimum age and maximum price
+    When I go to the products page
+    And I fill in "price" with "13.50"
+    And I fill in "age" with "3"
+    And I press "Filter products"
+    Then I should be on the products page
+    And I should not see "slinky"
+    But I should not see "fluffy bunny"
+    And I should see "ball"
+
   Scenario: sort by price
     When I go to the products page
     And I press "Price"

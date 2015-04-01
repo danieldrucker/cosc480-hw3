@@ -4,10 +4,6 @@ class ProductsController < ApplicationController
             @products = Product.all.filter_by(params[:age], params[:price])
             @products = @products.sorted_by(params[:sort])
             return @products
-=begin        elsif !params.has_key?(:age) and !params.has_key?(:age) and !params.has_key?(:sort)
-            age, session[:age] = ""
-            price, session[:price] = ""
-=end            sort, session[:sort] = ""
         else
             if params.has_key?(:age)
                 age = params[:age]
@@ -33,10 +29,10 @@ class ProductsController < ApplicationController
             elsif session.has_key?(:sort)
                 sort = session[:sort]
             else
-                sort = ""
+                sort = "name"
             end
         end
-
+        flash.keep
         redirect_to products_path :age => age, :price => price, :sort => sort
     end
             
@@ -63,14 +59,14 @@ class ProductsController < ApplicationController
             redirect_to products_path :age => '', :price => '', :sort => ''
         else
             flash[:alert] = "Product couldn't be created"
-            redirect_to new_product_path :age => '', :price => '', :sort => ''
+            redirect_to new_product_path
         end
     end
  
     def update
         @product = Product.find params[:id]
-        @product.assign_attributes(create_update_params)
-        if @product.save
+        #@product.assign_attributes(create_update_params)
+        if (@product.update(create_update_params))
             flash[:notice] = "#{@product.name} was successfully updated."
             redirect_to product_path(@product) 
         else
